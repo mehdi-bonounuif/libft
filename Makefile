@@ -6,6 +6,7 @@ SRCS = ft_isalpha.c\
        ft_strlen.c\
        ft_bzero.c\
        ft_memcpy.c\
+       ft_memcmp.c\
        ft_toupper.c\
        ft_tolower.c\
        ft_atoi.c\
@@ -33,7 +34,12 @@ SRCS = ft_isalpha.c\
        ft_striteri.c\
 
 
+BSRC = ft_lstnew.c\
+       ft_lstadd_front.c\
+
+
 OBJS = $(SRCS:.c=.o)
+BOBJS = $(BSRC:.c=.o)
 
 CC = gcc
 RM = rm -rf
@@ -42,6 +48,9 @@ AR = ar crs
 NAME = libft.a
 
 all: $(NAME)
+
+bonus: $(NAME) $(BOBJS)
+	@$(AR) $(NAME) $(BOBJS)
 
 #exec: $(NAME)
 #	@$(CC) $(FLAGS) main.c -L. -lft -o program
@@ -54,7 +63,7 @@ $(NAME): $(OBJS)
 
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(BOBJS)
 
 fclean: clean
 	@$(RM) $(NAME)

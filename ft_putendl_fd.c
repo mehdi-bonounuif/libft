@@ -6,7 +6,7 @@ void	ft_putendl_fd(char *s, int fd)
 
 	l = ft_strlen(s);
 	write(fd, s, l);
-	write(fd, "\0", 1);
+	write(fd, "\n", 1);
 }
 
 /*int	main()
