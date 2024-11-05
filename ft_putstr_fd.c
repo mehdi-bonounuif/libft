@@ -10,9 +10,9 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, s, l);
 }
 
-int	main()
+/*int	main()
 {
 	char string10[] = "from putstr";
 	int fd1 = open("putstr.txt", O_RDWR | O_CREAT, 777);
 	ft_putstr_fd(string10, fd1);
-}
+}*/
