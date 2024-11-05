@@ -1,44 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 18:44:30 by mbounoui          #+#    #+#             */
+/*   Updated: 2024/11/04 18:44:41 by mbounoui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	count_len(int n)
+int    count_len(long n)
 {
-	int	count;
+    int    count;
 
-	count = 0;
-	while (n > 0)
-	{
-		n /= 10;
-		count++;
-	}
-	return (count);
+    count = 0;
+    if (n < 0)
+    {
+	    n = n * -1;
+	    count += 1;
+    }
+    while (n > 0)
+    {
+        n /= 10;
+        count++;
+    }
+    return (count);
 }
 
-char	*ft_itoa(int n)
+void	hand_num(long* num, int* sign)
 {
-	char	*result;
-	int	len;
-	long	nb;
-	int	sign;
+	*num *= -1;
+	*sign = -1;
+}
 
-	if (n == 0)
-		return (ft_strdup("0"));
-	sign = 1;
-	nb = n;
-	len = count_len(n);
-	if(n < 0)
-	{
-		len++;
-		sign = -1;
-	}
-	if (!(result = (char *)malloc(sizeof(char) * len + 1)))
-		return NULL;
-	result[len] = '\0';
-	while (nb > 0)
-	{
-		result[--len] = '0' + (n * 10) * sign;
-		n /= 10;
-	}
-	if (sign == -1)
-		result[0] = '-';
-	return (result);
+char    *ft_itoa(int n)
+{
+    char	*result;
+    int	len;
+    long	nb;
+    int	sign;
+
+    if (n == 0)
+        return (ft_strdup("0"));
+    sign = 1;
+    nb = n;
+    len = count_len(nb);
+    if (nb < 0) 
+	    hand_num(&nb, &sign);
+    result = (char *)malloc(sizeof(char) * len + 1);
+    if (!result)
+        return (NULL);
+    result[len] = '\0';
+    while (len)
+    {
+        result[--len] = '0' + (nb % 10);
+        nb = nb / 10;
+    }
+    if (sign == -1)
+        result[0] = '-';
+    return (result);
 }
