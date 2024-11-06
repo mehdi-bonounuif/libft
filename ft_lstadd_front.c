@@ -7,7 +7,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	new->next = *lst;
 	*lst = new;
 }
-/*
+
 void	print_list2(t_list *head)
 {
 	t_list *temp;
@@ -17,8 +17,7 @@ void	print_list2(t_list *head)
 		printf("%s\n", (char *)temp->content);
 		temp = temp->next;
 	}
-=======
->>>>>>> 095b5ec272cf16dd9b45b1996b81482a263d94bd
+
 }
 
 int main()
@@ -33,4 +32,4 @@ int main()
 
 	free(head->next);
 	free(head);
-}*/
+}
