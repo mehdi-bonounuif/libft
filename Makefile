@@ -23,6 +23,7 @@ SRCS = ft_isalpha.c\
        ft_strnstr.c\
        ft_calloc.c\
        ft_memmove.c\
+       ft_memcmp.c\
        ft_strlcpy.c\
        ft_substr.c\
        ft_strjoin.c\
@@ -32,8 +33,13 @@ SRCS = ft_isalpha.c\
        ft_strmapi.c\
        ft_striteri.c\
 
+OBSRC= ft_lstadd_front.c\
+	ft_lstnew.c\
+	ft_lstsize.c\
+
 
 OBJS = $(SRCS:.c=.o)
+BOBJ = $(OBSRC:.c=.o)
 
 CC = gcc
 RM = rm -rf
@@ -41,10 +47,16 @@ FLAGS = -Wall -Wextra -Werror
 AR = ar crs
 NAME = libft.a
 
+
+.PHONY: all clean fclean re bonus
 all: $(NAME)
+
+bonus: all $(BOBJ)
+	@$(AR) $(NAME) $(BOBJ)
 
 #exec: $(NAME)
 #	@$(CC) $(FLAGS) main.c -L. -lft -o program
+
 
 $(NAME): $(OBJS)
 	@$(AR) $(NAME) $(OBJS)
@@ -54,12 +66,10 @@ $(NAME): $(OBJS)
 
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(BOBJ)
 
 fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
 

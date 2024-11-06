@@ -11,7 +11,7 @@ t_list	*ft_lstnew(void *content)
 	node->next = NULL;
 	return (node);
 }
-
+/*
 void	print_list(t_list *head)
 {
 	t_list *temporary;
@@ -43,4 +43,4 @@ int	main(void)
 	free(n1);
   	free(n2);
     	free(n3);
-}
+}*/
