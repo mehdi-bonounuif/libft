@@ -1,104 +1,77 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 14:21:21 by mbounoui          #+#    #+#             */
-/*   Updated: 2024/11/05 22:12:30 by mbounoui         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-// IS SPACE
-
-int	is_space(char c)
+int	count_word(char const *s, char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n');
-}
-
-// COUNT LEN OF WORD TO SEP
-int	wordlen(char const *str, char c)
-{
+	int	count;
 	int	i;
-	int	timer;
 
+	count = 0;
 	i = 0;
-	timer = 0;
-	while (str[i] == c || is_space(str[i]))
-		i++;
-	while (str[i] != c && str[i] != '\0' && !is_space(str[i]))
+	while (s[i])
 	{
-		timer++;
-		i++;
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
 	}
-	return (timer);
+	return (count);
 }
-// COUNT WORDS
-int	wordcount(char const *str, char c)
-{
-	int	i;
-	int	timer;
 
-	i = 0;
-	timer = 0;
-	while (str[i])
-	{
-		while (str[i] == c)
-			i++;
-		if (str[i] != '\0')
-			timer++;
-		while (str[i] != c && str[i] != '\0')
-			i++;
-	}
-	return (timer);
-}
-// COPY WORD
-char	*copywords(char *str, char c)
+char	*copy_word(char const *str, char c, int *len)
 {
-	int	i;
+	int		i;
 	char	*word;
-	int	len;
 
-        len = wordlen(str, c);
 	i = 0;
-	word = (char *)malloc(sizeof(char) * (len + 1));
-	if (!word)
-		return (0);
-	while (i < len)
-	{
-		word[i] = str[i];
+	while (str[i] && str[i] != c)
 		i++;
-	}
+	*len = i;
+	word = (char *)malloc((i + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	ft_memmove(word, str, i);
 	word[i] = '\0';
 	return (word);
 }
-// SPLIT FUNCTION
-char	**ft_split(char *s, char c)
+
+void	check_and_put(char **ars, char const *s, char c)
 {
 	int	i;
-	char	**strings;
-	int	count;
+	int	str_i;
+	int	len;
 
 	i = 0;
-        count = wordcount(s, c);
-	strings = malloc(sizeof(char *) * count + 1);
-	if (!s || !strings)
-		return (0);
-	while (*s)
+	str_i = 0;
+	while (s[str_i])
 	{
-		while (*s != '\0' && (*s == c || is_space(*s)))
-			s++;
-		if (*s != '\0')
+		while (s[str_i] && s[str_i] == c)
+			str_i++;
+		if (s[str_i])
 		{
-			strings[i] = copywords(s, c);
+			len = 0;
+			ars[i] = copy_word(&s[str_i], c, &len);
 			i++;
+			str_i += len;
 		}
-		while (*s != '\0' && *s != c && !is_space(*s))
-			s++;	
 	}
-	strings[i] = 0;
-	return (strings);
+	ars[i] = NULL;
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**ar;
+	int		count;
+
+	if (!s)
+		return (NULL);
+	count = count_word(s, c);
+	ar = (char **)malloc((count + 1) * sizeof(char *));
+	if (!ar)
+		return (NULL);
+	check_and_put(ar, s, c);
+	return (ar);
 }

@@ -65,14 +65,7 @@ int	main(void)
 	ft_bzero(my_text, max);
 	printf("my text after bzero : ");
 	while(i < len)
-	{void    to_lower(unsigned int i, char *string)
-{
-        if (i % 2 == 0)
-        {
-                if (string[i] >= 'A' && string[i] <= 'Z')
-                        string[i] = string[i] + 32;
-        }
-}
+	{
 		if(my_text[i] == '\0')
 			printf("\\0");
 		else
@@ -522,7 +515,7 @@ int	main(void)
         printf("'%s'\n", resulta);
 
 
-to_lower	printf("\n============================\n");
+	printf("\n============================\n");
 	// TEST FT_STRTRIM
 	printf("\nTEST FT_STRTRIM:\n");
 
@@ -546,14 +539,8 @@ to_lower	printf("\n============================\n");
         printf("Text : '%s'\n", textsplit);
         printf("Sep : '%c'\n", sepsplit);
         result9 = ft_split(textsplit, sepsplit);
-        while (result9[i5]) {void    to_lower(unsigned int i, char *string)
-{
-        if (i % 2 == 0)
-        {
-                if (string[i] >= 'A' && string[i] <= 'Z')
-                        string[i] = string[i] + 32;
-        }
-}
+        while (result9[i5])
+	{
       		printf("%s\n", result9[i5]);
        		free(result9[i5]);
 		i5++;
@@ -565,7 +552,8 @@ to_lower	printf("\n============================\n");
         printf("Text : '%s'\n", textsplit2);
         printf("Sep : '%c'\n", sepsplit2);
         result9 = ft_split(textsplit2, sepsplit2);
-        while (result9[i5]) {
+        while (result9[i5])
+	{
        		printf("%s\n", result9[i5]);
         	free(result9[i5]);
 		i5++;
@@ -604,6 +592,43 @@ to_lower	printf("\n============================\n");
 
 
 	printf("\n============================\n");
+        // TEST FT_LSTADD_BACK
+        printf("\nTEST FT_LSTADD_BACK:\n");
+
+	t_list *head2 = ft_lstnew("hello");
+        t_list *m1 = ft_lstnew("word");
+        t_list *m2 = ft_lstnew("mehdi");
+
+        ft_lstadd_back(&head2, m1);
+        ft_lstadd_back(&head2, m2);
+
+        print_list2(head2);
+        free(head2);
+        free(m1);
+        free(m2);
+
+
+	printf("\n============================\n");
+        // TEST FT_LSTLAST
+        printf("\nTEST FT_LSTLAST\n");
+
+	t_list *last;
+        t_list *node1 = ft_lstnew("first");
+        t_list *node2 = ft_lstnew("middle");
+        t_list *node3 = ft_lstnew("last");
+
+        node1->next = node2;
+        node2->next = node3;
+        node3->next = NULL;
+        last = ft_lstlast(node1);
+        printf("%s\n", (char *)last->content);
+
+	free(node1->next->next);
+        free(node1->next);
+        free(node1);
+
+
+	printf("\n============================\n");
         // TEST FT_LSTADD_FRONT
         printf("\nTEST FT_LSTADD_FRONT:\n");
 
@@ -617,8 +642,8 @@ to_lower	printf("\n============================\n");
 
         printf("\n");
 
-        free(head->next);
         free(head);
+        free(mem1);
 
 
         printf("\n============================\n");
@@ -642,6 +667,25 @@ to_lower	printf("\n============================\n");
         free(n1);
         free(n2);
         free(n3);
+
+
+        printf("\n============================\n");
+        // TEST FT_LSTSIZE
+        printf("\nTEST FT_LSTSIZE\n");
+
+	t_list *head3;
+        t_list f1;
+        t_list f2;
+        t_list f3;
+
+        head3 = &f1;
+        f1.next = &f2;
+        f2.next = &f3;
+        f3.next = NULL;
+
+        int si = ft_lstsize(head3);
+
+        printf("%d\n", si);
 
 	return 0;
 }

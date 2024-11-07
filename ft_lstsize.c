@@ -26,18 +26,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
-/*
-int main()
-{
-	t_list n1, n2, n3;
-	t_list *head;
-
-	head = &n1;
-	n1.next = &n2;
-	n2.next = &n3;
-	n3.next = NULL;
-
-	int size = ft_lstsize(head);
-
-	printf("%d\n", size);
-}*/

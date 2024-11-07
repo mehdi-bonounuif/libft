@@ -44,10 +44,14 @@ SRCS = ft_isalpha.c\
        ft_itoa.c\
        ft_strmapi.c\
        ft_striteri.c\
+       main.c
 
 BSRC = ft_lstnew.c\
        ft_lstadd_front.c\
+       ft_lstadd_back.c\
        ft_lstsize.c\
+       ft_lstlast.c\
+       main.c
 
 
 OBJS = $(SRCS:.c=.o)
@@ -62,13 +66,13 @@ NAME = libft.a
 
 .PHONY: all clean fclean re bonus
 
-all: $(NAME)
+all: $(NAME) exec
 
 bonus: all $(BOBJ)
 	@$(AR) $(NAME) $(BOBJ)
 
-#exec: $(NAME)
-#	@$(CC) $(FLAGS) main.c -L. -lft -o program
+exec: $(NAME)
+	@$(CC) $(FLAGS) main.c -L. -lft -o program
 
 
 $(NAME): $(OBJS)
