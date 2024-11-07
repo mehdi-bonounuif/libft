@@ -38,6 +38,17 @@ void    print_list2(t_list *head)
 
 }
 
+void    del(void* content)
+{
+        free(content);
+}
+
+void    me(void *content)
+{
+        unsigned char *new_data = (unsigned char *)content;
+        *new_data = 'M';
+}
+
 int	main(void)
 {
 	printf("\n============================\n");
@@ -93,11 +104,11 @@ int	main(void)
 	// TEST FT_ISALPHA
 	printf("\nTEST FT_ISALPHA :\n");
 	char e = 'a';	
-	char f = 'C';
+	char fe = 'C';
 	char j = '6';
 	char h = '!';
 	printf("%c is %d\n", e, ft_isalpha(a));
-	printf("%c is %d\n", f, ft_isalpha(b));
+	printf("%c is %d\n", fe, ft_isalpha(b));
 	printf("%c is %d\n", j, ft_isalpha(c));
 	printf("%c is %d\n", h, ft_isalpha(d));
 
@@ -686,6 +697,77 @@ int	main(void)
 
         printf("%d\n", si);
 
+
+        printf("\n============================\n");
+        // TEST FT_LSTDELONE
+        printf("\nTEST FT_LSTDELONE\n");
+
+	t_list *node4 = malloc(sizeof(t_list));
+   	if (!node4)
+   	{
+        	perror("malloc failed");
+        	return 1;
+    	}
+    	node4->content = malloc(sizeof(int));
+    	if (!(node4->content))
+    	{
+        	perror("malloc failed");
+        	free(node4);
+        	return 1;
+    	}
+    	*(int*)(node4->content) = 42;
+   	node4->next = NULL;
+    	printf("Node content before deletion: %d\n", *(int*)(node4->content));
+    	ft_lstdelone(node4, del);
+    	printf("Node deleted successfully\n");
+
+
+        printf("\n============================\n");
+        // TEST FT_LSTCLEAR
+        printf("\nTEST FT_LSTCLEAR\n");
+
+	t_list *list = NULL;
+	int	ri = 0;
+  	while (ri < 3)
+    	{
+        	int *data = (int *)malloc(sizeof(int));
+        	*data = ri;
+        	ft_lstadd_back(&list, ft_lstnew(data));
+		ri++;
+    	}
+    	ft_lstclear(&list, del);
+    	if (list == NULL)
+        	printf("List cleared successfully.\n");
+    	else
+        	printf("List was not cleared.\n");
+
+
+        printf("\n============================\n");
+        // TEST FT_LSTCLEAR
+        printf("\nTEST FT_LSTCLEAR\n");
+
+	unsigned char content1 = 'A';
+   	unsigned char content2 = 'B';
+   	unsigned char content3 = 'C';
+
+    	t_list *nd1 = ft_lstnew(&content1);
+    	t_list *nd2 = ft_lstnew(&content2);
+    	t_list *nd3 = ft_lstnew(&content3);
+
+    	nd1->next = nd2;
+    	nd2->next = nd3;
+
+    	ft_lstiter(nd1, me);
+
+    	t_list *temp = nd1;
+    	while (temp != NULL)
+    	{
+        	printf("Content %c\n", *(unsigned char *)temp->content);
+        	temp = temp->next;
+    	}
+    	free(nd1);
+    	free(nd2);
+    	free(nd3);
 	return 0;
 }
 

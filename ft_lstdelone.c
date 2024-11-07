@@ -21,6 +21,7 @@ void ft_lstdelone(t_list *lst, void (*del)(void*))
 
 	free(lst);
 }
+/*
 void	del(void* content)
 {
 	free(content);
@@ -28,7 +29,6 @@ void	del(void* content)
 
 int main()
 {
-    // Creating a simple linked list with one node
     t_list *node = malloc(sizeof(t_list));
     if (!node)
     {
@@ -36,7 +36,6 @@ int main()
         return 1;
     }
 
-    // Allocating and assigning content to the node
     node->content = malloc(sizeof(int));
     if (!(node->content))
     {
@@ -44,16 +43,13 @@ int main()
         free(node);
         return 1;
     }
-    *(int*)(node->content) = 42; // Assigning a value to the node's content
-    node->next = NULL; // Since this is a single node, the next is NULL
+    *(int*)(node->content) = 42;
+    node->next = NULL;
 
     printf("Node content before deletion: %d\n", *(int*)(node->content));
-
-    // Call ft_lstdelone to delete the node
     ft_lstdelone(node, del);
 
-    // After deletion, ensure memory was freed
     printf("Node deleted successfully\n");
 
     return 0;
-}
+}*/
