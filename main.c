@@ -641,8 +641,7 @@ int	main(void)
         print_list2(head);
 
         printf("\n");
-
-        free(head);
+        free(mem1->next);
         free(mem1);
 
 

@@ -6,7 +6,7 @@
 #    By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 17:29:17 by mbounoui          #+#    #+#              #
-#    Updated: 2024/11/06 17:29:21 by mbounoui         ###   ########.fr        #
+#    Updated: 2024/11/07 15:29:18 by mbounoui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ BSRC = ft_lstnew.c\
        ft_lstadd_back.c\
        ft_lstsize.c\
        ft_lstlast.c\
-       main.c
+       ft_lstdelone.c\
 
 
 OBJS = $(SRCS:.c=.o)
@@ -66,7 +66,7 @@ NAME = libft.a
 
 .PHONY: all clean fclean re bonus
 
-all: $(NAME) exec
+all: $(NAME)
 
 bonus: all $(BOBJ)
 	@$(AR) $(NAME) $(BOBJ)
