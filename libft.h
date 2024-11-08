@@ -6,7 +6,7 @@
 /*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:29:28 by mbounoui          #+#    #+#             */
-/*   Updated: 2024/11/07 15:28:48 by mbounoui         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:22:21 by mbounoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,5 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:52:10 by mbounoui          #+#    #+#             */
-/*   Updated: 2024/11/08 16:52:12 by mbounoui         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:21:27 by mbounoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,3 @@ void	ft_putstr_fd(char *s, int fd)
 	l = ft_strlen(s);
 	write(fd, s, l);
 }
-
-/*int	main()
-{
-	char string10[] = "from putstr";
-	int fd1 = open("putstr.txt", O_RDWR | O_CREAT, 777);
-	ft_putstr_fd(string10, fd1);
-}*/

@@ -1,4 +1,6 @@
 #include "libft.h"
+#include <unistd.h>
+#include <fcntl.h>
 
 typedef struct
 {
@@ -617,6 +619,47 @@ int	main(void)
         printf("%s\n", string7);
 
 
+	printf("\n============================\n");
+	// TEST FT_PUTSTR_FD
+	printf("\nTEST FT_PUTSTR_FD:\n");
+
+	int fd = open("putchar.txt", O_RDWR | O_CREAT, 777);
+        ft_putchar_fd('M', fd);
+
+
+	printf("\n============================\n");
+	// TEST FT_PUTSTR_FD
+	printf("\nTEST FT_PUTSTR_FD:\n");
+
+	char string10[] = "from putstr";
+        int fd1 = open("putstr.txt", O_RDWR | O_CREAT, 777);
+        ft_putstr_fd(string10, fd1);
+
+
+	printf("\n============================\n");
+	// TEST FT_PUTENDL_FD
+	printf("\nTEST FT_PUTENDL_FD:\n");
+
+	char string11[] = "from putendl";
+        int fd2 = open("putendl.txt", O_RDWR | O_CREAT, 777);
+        ft_putendl_fd(string11, fd2);
+
+	
+	printf("\n============================\n");
+	// TEST FT_PUTNBR_FD
+	printf("\nTEST FT_PUTNBR_FD:\n");
+
+	int fd3 = open("putnbr.txt", O_RDWR | O_CREAT, 777);
+        ft_putnbr_fd(100, fd3);
+        ft_putchar_fd('\n', fd3);
+        ft_putnbr_fd(-100, fd3);
+        ft_putchar_fd('\n', fd3);
+        ft_putnbr_fd(-2147483648, fd3);
+        ft_putchar_fd('\n', fd3);
+        ft_putnbr_fd(2147483647, fd3);
+        ft_putchar_fd('\n', fd3);
+
+	
 	printf("\n============================\n");
         // TEST FT_LSTADD_BACK
         printf("\nTEST FT_LSTADD_BACK:\n");
