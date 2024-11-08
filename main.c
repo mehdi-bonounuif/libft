@@ -215,14 +215,19 @@ int	main(void)
 	
 	char tmp[20];
 	char tmp1[20];
-	int tmnu[5];
-	int nu = 300;
+	size_t tmnu[1];
+	size_t nu = 500;
 
-	ft_memset(tmnu, nu, 16);
+	ft_memset(tmnu, nu, 4);
 	int co = 0;
-	while(co < 5)
+	size_t max_size = (size_t)-1;
+	printf("%zu\n", max_size);
+
+	int maxs = 2147483647;
+	printf("%d\n", maxs  + 2147483647);
+	while(co < 1)
 	{
-		printf("%d ", tmnu[co]);
+		printf("%ld ", tmnu[co]);
 		co++;
 	}
 	printf("\n");
@@ -391,17 +396,27 @@ int	main(void)
 	// TEST FT_MEMCHR
 	printf("\nTEST FT_MEMCHR:\n");
 
-	//int nub = 1;
-	//int numbs[6] = {5,4,3,1,2,3};
- 	//size_t lenn = sizeof(numbs) / sizeof(numbs[0]);
- 	//void *rensu = ft_memchr(numbs, nub, lenn * sizeof(int));
+	int nub = 1;
+	int *numbs = (int[]){5,4,3,1,2,3};
+ 	size_t lenn = 6;
+	while (lenn--)
+        {
+                printf("%d ",*numbs);
+                numbs++;
+        }
 
-	//int found = (int *)rensu;
-	//size_t index = (found - numbs);
+	printf("\n");
+ 	void *rensu = ft_memchr(numbs, nub, lenn * sizeof(int));
+	int *found = (int *)rensu;
+	size_t index = (found - numbs);
+       	printf("Found '%d' at position: %zu\n", nub, index);
+	while (*found)
+	{
+       		printf("%d ",*found);
+		found++;
+	}
+	printf("\n");
 
-       	//printf("Found '%d' at position: %zu\n", nub, index);
-	
-        //printf("Memchr function Return '%d'\n",rensu);
 	const char string[] = "Hello, World!";
 	char ch = 'o';
  	size_t leng = ft_strlen(string);

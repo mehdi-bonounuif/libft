@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/08 16:52:36 by mbounoui          #+#    #+#             */
+/*   Updated: 2024/11/08 16:54:34 by mbounoui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	count_word(char const *s, char c)
+static int	count_word(char const *s, char c)
 {
 	int	count;
 	int	i;
@@ -21,7 +33,7 @@ int	count_word(char const *s, char c)
 	return (count);
 }
 
-char	*copy_word(char const *str, char c, int *len)
+static char	*copy_word(char const *str, char c, int *len)
 {
 	int		i;
 	char	*word;
@@ -38,7 +50,22 @@ char	*copy_word(char const *str, char c, int *len)
 	return (word);
 }
 
-void	check_and_put(char **ars, char const *s, char c)
+static void	free_split(char **ars)
+{
+	int	i;
+
+	i = 0;
+	if (!ars)
+		return ;
+	while (ars[i])
+	{
+		free(ars[i]);
+		i++;
+	}
+	free(ars);
+}
+
+static void	check_and_put(char **ars, char const *s, char c)
 {
 	int	i;
 	int	str_i;
@@ -54,6 +81,11 @@ void	check_and_put(char **ars, char const *s, char c)
 		{
 			len = 0;
 			ars[i] = copy_word(&s[str_i], c, &len);
+			if (!ars[i])
+			{
+				free_split(ars);
+				return ;
+			}
 			i++;
 			str_i += len;
 		}

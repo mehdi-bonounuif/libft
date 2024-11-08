@@ -6,7 +6,7 @@
 /*   By: mbounoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 18:19:10 by mbounoui          #+#    #+#             */
-/*   Updated: 2024/11/04 19:24:07 by mbounoui         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:59:48 by mbounoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	int		i;
 	char	*result;
 
 	i = 0;
