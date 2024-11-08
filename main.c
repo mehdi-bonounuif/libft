@@ -27,7 +27,18 @@ void    to_lower(unsigned int i, char *string)
         }
 }
 
-// PRINT NODES CONTENT
+// PRINT NODES CONTENT (INT)
+void print_list(t_list *lst)
+{
+    while (lst)
+    {
+        printf("%d -> ", *(int *)lst->content);
+        lst = lst->next;
+    }
+    printf("NULL\n");
+}
+
+// PRINT NODES CONTENT (STRING)
 void    print_list2(t_list *head)
 {
         t_list *temp;
@@ -49,6 +60,13 @@ void    me(void *content)
 {
         unsigned char *new_data = (unsigned char *)content;
         *new_data = 'M';
+}
+
+void	*increment(void *content)
+{
+	int *val = (int *)content;
+	*val += 1;
+	return val;
 }
 
 int	main(void)
@@ -826,6 +844,30 @@ int	main(void)
     	free(nd1);
     	free(nd2);
     	free(nd3);
+
+	
+        printf("\n============================\n");
+        // TEST FT_LSTCLEAR
+        printf("\nTEST FT_LSTCLEAR\n");
+
+    	t_list *lst = ft_lstnew(malloc(sizeof(int)));
+    	*(int *)lst->content = 1;
+    	lst->next = ft_lstnew(malloc(sizeof(int)));
+    	*(int *)lst->next->content = 2;
+    	lst->next->next = ft_lstnew(malloc(sizeof(int)));
+    	*(int *)lst->next->next->content = 3;
+
+    	printf("Original list: ");
+    	print_list(lst);
+
+    	t_list *new_list = ft_lstmap(lst, increment, del);
+
+    	printf("Modified list: ");
+    	print_list(new_list);
+
+    	ft_lstclear(&new_list, del);
+    	ft_lstclear(&lst, del);
+
 	return 0;
 }
 
