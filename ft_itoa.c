@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	count_len(long n)
+static int	count_len(long n)
 {
 	int	count;
 
@@ -30,7 +30,7 @@ int	count_len(long n)
 	return (count);
 }
 
-void	hand_num(long *num, int *sign)
+static void	hand_num(long *num, int *sign)
 {
 	*num *= -1;
 	*sign = -1;

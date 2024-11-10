@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_isalpha.c\
+MAN_SRCS = ft_isalpha.c\
        ft_isdigit.c\
        ft_isalnum.c\
        ft_isascii.c\
@@ -46,7 +46,7 @@ SRCS = ft_isalpha.c\
        ft_striteri.c\
        main.c
 
-BSRC = ft_lstnew_bonus.c\
+OBJ_SRCS = ft_lstnew_bonus.c\
        ft_lstadd_front_bonus.c\
        ft_lstadd_back_bonus.c\
        ft_lstsize_bonus.c\
@@ -56,9 +56,8 @@ BSRC = ft_lstnew_bonus.c\
        ft_lstiter_bonus.c\
        ft_lstmap_bonus.c\
 
-
-OBJS = $(SRCS:.c=.o)
-BOBJ = $(BSRC:.c=.o)
+MAN_OBJS = $(MAN_SRCS:.c=.o)
+BON_OBJS = $(OBJ_SRCS:.c=.o)
 
 CC = gcc
 RM = rm -rf
@@ -66,30 +65,26 @@ FLAGS = -Wall -Wextra -Werror
 AR = ar crs
 NAME = libft.a
 
-
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)
 
-bonus: all $(BOBJ)
-	@$(AR) $(NAME) $(BOBJ)
+bonus: $(BON_OBJS) $(NAME)
+	@$(AR) $(NAME) $(BON_OBJS)
 
 exec: $(NAME)
 	@$(CC) $(FLAGS) main.c -L. -lft -o program
 
-
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
+$(NAME): $(MAN_OBJS)
+	@$(AR) $(NAME) $(MAN_OBJS)
 
 %.o: %.c libft.h
 	@$(CC) $(FLAGS) -c $< -o $@
 
-
 clean:
-	@$(RM) $(OBJS) $(BOBJ)
+	@$(RM) $(MAN_OBJS) $(BON_OBJS)
 
 fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
-
