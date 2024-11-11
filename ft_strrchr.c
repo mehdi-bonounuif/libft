@@ -10,27 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-//
-//char	*ft_strrchr(const char *s, int c)
-//{
-//	size_t	i;
-//	char	*result;
-//
-//	result = (char*)s;
-//	i = ft_strlen(s);
-//	if (c == '\0')
-//		return (result + i);
-//	while (i != 0)
-//	{
-//		if (result[i] == (char)c)
-//			return (result + i);
-//		i--;
-//	}
-//	return (NULL);
-//}
-
-
 #include "libft.h"
 
 char    *ft_strrchr(const char *s, int c)
@@ -50,5 +29,3 @@ char    *ft_strrchr(const char *s, int c)
                 return ((char *)s + i);
         return (result);
 }
-
-

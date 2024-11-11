@@ -15,14 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-
-typedef struct s_list
-{
-	struct s_list	*next;
-	void			*content;
-}	t_list;
 
 /* Mandatory part */
 void	ft_bzero(void *s, size_t n);
@@ -48,6 +40,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+
 /* Additional part */
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -60,7 +53,14 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
+
 /* Bonus part */
+typedef struct s_list
+{
+        struct s_list   *next;
+        void                    *content;
+}       t_list;
+
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);

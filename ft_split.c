@@ -68,26 +68,26 @@ static void	free_split(char **ars)
 static void	check_and_put(char **ars, char const *s, char c)
 {
 	int	i;
-	int	str_i;
+	int	index;
 	int	len;
 
 	i = 0;
-	str_i = 0;
-	while (s[str_i])
+	index = 0;
+	while (s[index])
 	{
-		while (s[str_i] && s[str_i] == c)
-			str_i++;
-		if (s[str_i])
+		while (s[index] && s[index] == c)
+			index++;
+		if (s[index])
 		{
 			len = 0;
-			ars[i] = copy_word(&s[str_i], c, &len);
+			ars[i] = copy_word(&s[index], c, &len);
 			if (!ars[i])
 			{
 				free_split(ars);
 				return ;
 			}
 			i++;
-			str_i += len;
+			index += len;
 		}
 	}
 	ars[i] = NULL;

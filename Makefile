@@ -44,7 +44,7 @@ MAN_SRCS = ft_isalpha.c\
        ft_itoa.c\
        ft_strmapi.c\
        ft_striteri.c\
-       main.c
+      # main.c
 
 OBJ_SRCS = ft_lstnew_bonus.c\
        ft_lstadd_front_bonus.c\
@@ -77,6 +77,11 @@ exec: $(NAME)
 
 $(NAME): $(MAN_OBJS)
 	@$(AR) $(NAME) $(MAN_OBJS)
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(MAN_SRCS)
+	gcc -nostartfiles -shared -o libft.so $(MAN_OBJS)
+
 
 %.o: %.c libft.h
 	@$(CC) $(FLAGS) -c $< -o $@
